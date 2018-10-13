@@ -14,23 +14,10 @@
             </Filters>
         </Console>
 
-        <!-- 调试日志记录，每个文件最大4M，最多纪录10个文件 -->
-        <RollingFile name="debugLogs" fileName="${logger.dir}/erp/debugs.log"
-                     filePattern="${logger.dir}/erp/debugs.log.%i">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-            <Filters>
-                <ThresholdFilter level="DEBUG"/>
-                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
-            </Filters>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="10"/>
-        </RollingFile>
 
         <!-- 错误日志记录，每个文件最大4M，最多纪录10个文件 -->
-        <RollingFile name="errorLogs" fileName="${logger.dir}/erp/errors.log"
-                     filePattern="${logger.dir}/erp/errors.log.%i">
+        <RollingFile name="errorLogs" fileName="E:\dingdang\errors.log"
+                     filePattern="${logger.dir}/dingdang/errors.log.%i">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Filters>
                 <ThresholdFilter level="WARN"/>
@@ -41,18 +28,9 @@
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
 
-        <!-- 支付日志记录 -->
-        <RollingFile name="paymentLogs" fileName="${logger.dir}/openapi/payment.log"
-                     filePattern="${logger.dir}/erp/payment.log-%d{MM-dd-yyyy}">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-            </Policies>
-        </RollingFile>
-
         <!-- 所有日志记录，每日一个文件 -->
         <RollingFile name="allLogs" fileName="${logger.dir}/erp/all.log"
-                     filePattern="${logger.dir}/erp/all.log-%d{MM-dd-yyyy}">
+                     filePattern="${logger.dir}/dingdang/all.log-%d{MM-dd-yyyy}">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
@@ -60,59 +38,13 @@
         </RollingFile>
 
     </Appenders>
+    <!-- 根logger的设置，若代码中未找到指定的logger，则会根据继承机制，使用根logger-->
     <Loggers>
-
         <Root level="${logger.level}">
             <AppenderRef ref="console"/>
             <AppenderRef ref="debugLogs"/>
             <AppenderRef ref="errorLogs"/>
             <AppenderRef ref="allLogs"/>
         </Root>
-
-        <logger name="com.fundevelop.payment" level="debug" additivity="true">
-            <AppenderRef ref="paymentLogs"/>
-        </logger>
-
-        <logger name="com.alibaba.dubbo" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.apache.zookeeper" level="warn" additivity="false">
-        <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="com.alibaba.druid" level="error">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-
-        <logger name="org.springframework" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-
-        <logger name="org.apache.commons.beanutils" level="error" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.jboss" additivity="false" level="warn">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.hibernate" additivity="false" level="error">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.quartz" additivity="false" level="warn">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.hibernate" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.I0Itec" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="io.netty" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="com.netflix" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
-        <logger name="org.apache.cxf" level="warn" additivity="false">
-            <AppenderRef ref="errorLogs"/>
-        </logger>
     </Loggers>
 </Configuration>
