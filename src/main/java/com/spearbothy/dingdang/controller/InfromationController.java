@@ -1,5 +1,7 @@
 package com.spearbothy.dingdang.controller;
 
+import com.spearbothy.dingdang.common.response.Result;
+import com.spearbothy.dingdang.common.response.ResultCode;
 import com.spearbothy.dingdang.dao.InformationRepository;
 import com.spearbothy.dingdang.entity.InformationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,12 @@ public class InfromationController {
 
     @RequestMapping(value="getAllInfos",name="获取所有信息")
     @ResponseBody
-    public List<InformationEntity> getAllInfos(){
-        return dao.findAll();
+    public Result<List<InformationEntity>> getAllInfos(){
+        Result<List<InformationEntity>> result=new  Result<List<InformationEntity>>();
+        List<InformationEntity> list=dao.findAll();
+        result.setResultCode(ResultCode.SUCCESS);
+        result.setData(list);
+        return result;
     }
 
     @RequestMapping(value="saveInfo",name="保存信息")
