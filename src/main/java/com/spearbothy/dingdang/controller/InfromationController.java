@@ -25,15 +25,15 @@ public class InfromationController {
     @Autowired
     private InformationRepository dao;
 
-//    @RequestMapping(value="getAllInfos",name="获取所有信息")
-//    @ResponseBody
-//    public Result<List<InformationEntity>> getAllInfos(){
-//        Result<List<InformationEntity>> result=new  Result<List<InformationEntity>>();
-//        List<InformationEntity> list=dao.findAll();
-//        result.setResultCode(ResultCode.SUCCESS);
-//        result.setData(list);
-//        return result;
-//    }
+    @RequestMapping(value="getAllInfos",name="获取所有信息")
+    @ResponseBody
+    public Result<List<InformationEntity>> getAllInfos(){
+        Result<List<InformationEntity>> result=new  Result<List<InformationEntity>>();
+        List<InformationEntity> list=dao.findAll();
+        result.setResultCode(ResultCode.SUCCESS);
+        result.setData(list);
+        return result;
+    }
 
 //    @RequestMapping(value="getAllInfos",name="根据类型获取信息")
 //    @ResponseBody
