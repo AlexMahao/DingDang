@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface InformationRepository extends JpaRepository<InformationEntity,Long> {
 
-    @Query()
+    @Query(value = " select * from t_information  where type=1? order by browseCount", nativeQuery = true)
     List<InformationEntity> getInfosByType(int type);
 
 }
