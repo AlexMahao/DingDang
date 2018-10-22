@@ -30,4 +30,5 @@ public class InformationEntity implements Serializable {
     private Long userId;//用户id
     private Date createTime;//创建时间
     private String status;//状态
+    private String imgUrl;//图片
 }

@@ -2,6 +2,7 @@ package com.spearbothy.dingdang.controller;
 
 import com.spearbothy.dingdang.common.response.Result;
 import com.spearbothy.dingdang.common.response.ResultCode;
+import com.spearbothy.dingdang.controller.requestbean.InformationRequest;
 import com.spearbothy.dingdang.dao.InformationRepository;
 import com.spearbothy.dingdang.entity.InformationEntity;
 import com.spearbothy.dingdang.service.InformationService;
@@ -39,7 +40,7 @@ public class InfromationController {
 
     @RequestMapping(value="saveInfo",name="保存信息")
     @ResponseBody
-    public InformationEntity saveInfo(InformationEntity entity){
+    public InformationEntity saveInfo(InformationRequest entity){
          return  service.saveInfo(entity);
     }
 
@@ -48,4 +49,7 @@ public class InfromationController {
     public void delInfoById(InformationEntity entity){
         this.service.delInfoById(entity);
     }
+
+
+
 }
